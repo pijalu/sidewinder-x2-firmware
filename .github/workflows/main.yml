@@ -29,10 +29,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install platformio
     # It is important to first install the libraries before compiling, since otherwise compilation might fail to find the just-installed libraries
-    - name: update platformIO libraries
+    - name: Update platformIO libraries
       run: pio pkg update
     - name: Run PlatformIO
-      run: pio run -v
+      run: pio run
     - name: 'Upload firmware'
       uses: actions/upload-artifact@v4
       with:
