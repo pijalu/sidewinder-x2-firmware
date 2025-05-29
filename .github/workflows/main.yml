@@ -1,6 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-
-name: PIO CI
+name: Build Artillery Ruby firmware
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -29,12 +28,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install platformio
     # It is important to first install the libraries before compiling, since otherwise compilation might fail to find the just-installed libraries
-    - name: Update platformIO libraries
-      run: pio pkg update
+    - name: Install platformIO libraries
+      run: pio lib install
     - name: Run PlatformIO
       run: pio run
     - name: 'Upload firmware'
       uses: actions/upload-artifact@v4
       with:
         name: firmware
-        path: .pio/build/ARTILLERY_RUBY/firmware.*
+        path: .pio/build/ARTILLERY_RUBY/firmware.hex
